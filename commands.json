@@ -1,8 +1,0 @@
-{
-    "ping": {
-        "path": "./commands/ping.js"
-    },
-    "rss": {
-        "path": "./commands/rss.js"
-    }
-}
