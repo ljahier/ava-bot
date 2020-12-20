@@ -4,6 +4,7 @@ const { Client, Collection, WebhookClient, MessageEmbed } = require('discord.js'
 const { readdirSync } = require('fs')
 const commandFiles = readdirSync('./commands').filter(file => file.endsWith('.js'))
 const hook = new WebhookClient(process.env.WEBHOOK_CLIENT, process.env.WEBHOOK_TOKEN)
+const http = require('http')
 
 const client = new Client()
 
@@ -19,7 +20,6 @@ for (const file of commandFiles) {
 }
 
 require('./services-status/app')(hook, MessageEmbed)
-// hook.send('I am now alive!')
 
 client.on('message', msg => {
     let command = msg.content.slice(process.env.COMMAND_PREFIX.length).trim().toLowerCase()
@@ -37,3 +37,6 @@ client.on('message', msg => {
 })
 
 client.login(process.env.BOT_TOKEN)
+
+const server = http.createServer((req, res) => res.writeHead(200))
+server.listen(process.env.PORT)
