@@ -38,5 +38,5 @@ client.on('message', msg => {
 
 client.login(process.env.BOT_TOKEN)
 
-const server = http.createServer((req, res) => res.writeHead(200))
-server.listen(process.env.PORT)
+const server = http.createServer((req, res) => res.writeHead(200).end('Ok'))
+server.listen(process.env.PORT, 'localhost')
